@@ -46,6 +46,24 @@ class FibonacciTest(unittest.TestCase):
         with redirect_stderr(io.StringIO()):
             self.assertEqual(main(["-1"]), 2)
 
+    def test_cli_help_is_chinese(self) -> None:
+        from fibonacci import build_parser
+
+        help_text = build_parser().format_help()
+        self.assertIn("用法：", help_text)
+        self.assertIn("位置参数", help_text)
+        self.assertIn("可选参数", help_text)
+        self.assertIn("显示此帮助信息并退出", help_text)
+        self.assertNotIn("usage:", help_text)
+        self.assertNotIn("positional arguments", help_text)
+        self.assertNotIn("options:", help_text)
+
+        err = io.StringIO()
+        with redirect_stderr(err), self.assertRaises(SystemExit) as raised:
+            main([])
+        self.assertEqual(raised.exception.code, 2)
+        self.assertIn("缺少必要参数", err.getvalue())
+
 
 if __name__ == "__main__":
     unittest.main()
