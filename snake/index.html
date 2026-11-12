@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>贪吃蛇</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%231b3026'/%3E%3Ccircle cx='6' cy='9' r='3' fill='%23e7b04a'/%3E%3Ccircle cx='12' cy='5' r='2' fill='%23ff5d52'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="stage">
+    <header class="top">
+      <div>
+        <p class="eyebrow">小游戏</p>
+        <h1>贪吃蛇</h1>
+      </div>
+      <div class="scores" aria-live="polite">
+        <div>
+          <span>分数</span>
+          <strong id="score">0</strong>
+        </div>
+        <div>
+          <span>最高</span>
+          <strong id="best">0</strong>
+        </div>
+      </div>
+    </header>
+
+    <div class="board-wrap">
+      <canvas id="board" width="640" height="640" aria-label="贪吃蛇棋盘"></canvas>
+      <div id="overlay" class="overlay">
+        <h2 id="overlay-title">准备开始</h2>
+        <p id="overlay-text">方向键、WASD，或下方按钮。吃到红果会变长，走得也会越来越快。</p>
+        <button id="action" type="button">开始</button>
+      </div>
+    </div>
+
+    <div class="pad" aria-label="方向">
+      <button type="button" data-dir="up" aria-label="上">↑</button>
+      <button type="button" data-dir="left" aria-label="左">←</button>
+      <button type="button" data-dir="down" aria-label="下">↓</button>
+      <button type="button" data-dir="right" aria-label="右">→</button>
+    </div>
+
+    <div class="footer">
+      <p id="hint" class="hint">方向键、WASD 或下方按钮</p>
+      <button id="sound" class="ghost" type="button" aria-pressed="true">音效开</button>
+    </div>
+  </main>
+  <script src="logic.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
